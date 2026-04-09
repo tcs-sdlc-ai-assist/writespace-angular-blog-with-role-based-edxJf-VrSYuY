@@ -1,0 +1,45 @@
+<div class="user-row">
+  <div class="user-info">
+    <div class="user-avatar">
+      @if (user.avatarUrl) {
+        <img [src]="user.avatarUrl" [alt]="user.displayName + ' avatar'" class="avatar-img" />
+      } @else {
+        <div class="avatar-placeholder">
+          {{ user.displayName | slice:0:1 | uppercase }}
+        </div>
+      }
+    </div>
+    <div class="user-details">
+      <span class="display-name">{{ user.displayName }}</span>
+      <span class="username">&#64;{{ user.username }}</span>
+    </div>
+  </div>
+
+  <div class="user-role">
+    <span class="role-badge" [ngClass]="{
+      'role-admin': user.role === 'admin',
+      'role-editor': user.role === 'editor',
+      'role-author': user.role === 'author',
+      'role-viewer': user.role === 'viewer'
+    }">
+      {{ user.role | titlecase }}
+    </span>
+  </div>
+
+  <div class="user-created">
+    <span class="created-date">{{ user.createdAt | date:'mediumDate' }}</span>
+  </div>
+
+  <div class="user-actions">
+    @if (!isDefaultAdmin && !isSelf) {
+      <button
+        type="button"
+        class="delete-btn"
+        (click)="onDelete()"
+        aria-label="Delete user {{ user.displayName }}"
+      >
+        Delete
+      </button>
+    }
+  </div>
+</div>

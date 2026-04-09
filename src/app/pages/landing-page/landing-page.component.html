@@ -1,0 +1,81 @@
+<section class="hero">
+  <public-navbar></public-navbar>
+  <div class="hero-content">
+    <h1 class="hero-headline">Your Space to Write, Share, and Inspire</h1>
+    <p class="hero-subtitle">
+      WriteSpace is a modern blogging platform where writers craft stories, share ideas, and connect with readers around the world.
+    </p>
+    <div class="hero-cta">
+      <a routerLink="/register" class="btn btn-primary">Get Started</a>
+      <a routerLink="/login" class="btn btn-secondary">Login</a>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="features-container">
+    <h2 class="section-title">Why WriteSpace?</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">✍️</div>
+        <h3 class="feature-title">Elegant Editor</h3>
+        <p class="feature-description">
+          Write with a distraction-free editor designed to let your creativity flow. Format your posts with ease and focus on what matters — your words.
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌍</div>
+        <h3 class="feature-title">Reach Your Audience</h3>
+        <p class="feature-description">
+          Publish your stories and share them with a growing community of readers. Build your following and make your voice heard.
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💬</div>
+        <h3 class="feature-title">Engage &amp; Connect</h3>
+        <p class="feature-description">
+          Spark conversations through comments and feedback. Connect with fellow writers and readers who share your passions.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="latest-posts">
+  <div class="latest-posts-container">
+    <h2 class="section-title">Latest Posts</h2>
+    @if (isLoading) {
+      <div class="posts-loading">
+        <p>Loading latest posts...</p>
+      </div>
+    } @else if (latestPosts.length === 0) {
+      <div class="posts-empty">
+        <p>No posts yet. Be the first to <a routerLink="/register">start writing</a>!</p>
+      </div>
+    } @else {
+      <div class="posts-grid">
+        @for (post of latestPosts; track post.id) {
+          <div class="post-card">
+            <h3 class="post-title">{{ post.title }}</h3>
+            <p class="post-excerpt">{{ post.excerpt }}</p>
+            <div class="post-meta">
+              <span class="post-author">{{ post.author }}</span>
+              <span class="post-date">{{ post.createdAt | date: 'mediumDate' }}</span>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</section>
+
+<footer class="landing-footer">
+  <div class="footer-container">
+    <div class="footer-links">
+      <a routerLink="/">Home</a>
+      <a routerLink="/register">Sign Up</a>
+      <a routerLink="/login">Login</a>
+    </div>
+    <p class="footer-copyright">&copy; {{ currentYear }} WriteSpace. All rights reserved.</p>
+  </div>
+</footer>

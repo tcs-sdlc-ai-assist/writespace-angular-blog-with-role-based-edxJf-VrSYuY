@@ -1,0 +1,25 @@
+<section class="blog-list-page">
+  <app-navbar></app-navbar>
+
+  <div class="blog-list-container">
+    <h1 class="page-title">Blog Posts</h1>
+
+    @if (posts.length === 0) {
+      <div class="empty-state">
+        <p class="empty-state-message">No posts yet. Start sharing your thoughts with the world!</p>
+        <button class="cta-button" (click)="onWriteFirstPost()">Write your first post</button>
+      </div>
+    } @else {
+      <div class="posts-grid">
+        @for (post of posts; track post.id) {
+          <app-blog-card
+            [post]="post"
+            [isOwner]="isOwner(post)"
+            (edit)="onEditPost($event)"
+            (delete)="onDeletePost($event)"
+          ></app-blog-card>
+        }
+      </div>
+    }
+  </div>
+</section>

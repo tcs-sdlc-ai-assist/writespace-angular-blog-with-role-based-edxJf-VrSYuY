@@ -1,0 +1,15 @@
+<div
+  class="avatar-container"
+  [ngClass]="'avatar-' + size"
+  [attr.aria-label]="'Avatar for ' + displayName"
+>
+  <div
+    class="avatar-circle"
+    [ngStyle]="{ 'background-color': backgroundColor }"
+  >
+    <span class="avatar-emoji">{{ emoji }}</span>
+  </div>
+  @if (showName && displayName) {
+    <span class="avatar-name">{{ displayName }}</span>
+  }
+</div>

@@ -1,0 +1,36 @@
+<nav class="navbar">
+  <div class="navbar-container">
+    <div class="navbar-brand">
+      <a routerLink="/blogs" class="brand-link">WriteSpace</a>
+      <button
+        class="mobile-menu-toggle"
+        (click)="toggleMobileMenu()"
+        [attr.aria-expanded]="isMobileMenuOpen"
+        aria-label="Toggle navigation menu"
+      >
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+
+    <div class="navbar-links" [class.mobile-open]="isMobileMenuOpen">
+      <a routerLink="/blogs" routerLinkActive="active" class="nav-link" (click)="closeMobileMenu()">Blogs</a>
+      <a routerLink="/write" routerLinkActive="active" class="nav-link" (click)="closeMobileMenu()">Write</a>
+      @if (isAdmin) {
+        <a routerLink="/admin" routerLinkActive="active" class="nav-link" (click)="closeMobileMenu()">Admin</a>
+        <a routerLink="/users" routerLinkActive="active" class="nav-link" (click)="closeMobileMenu()">Users</a>
+      }
+    </div>
+
+    <div class="navbar-user" [class.mobile-open]="isMobileMenuOpen">
+      <div class="user-info">
+        <app-avatar [name]="displayName" [size]="32"></app-avatar>
+        <span class="user-display-name">{{ displayName }}</span>
+      </div>
+      <button class="logout-button" (click)="onLogout()" aria-label="Logout">
+        Logout
+      </button>
+    </div>
+  </div>
+</nav>

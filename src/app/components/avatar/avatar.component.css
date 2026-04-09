@@ -1,0 +1,100 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.avatar-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.avatar-container.size-sm {
+  width: 2rem;
+  height: 2rem;
+}
+
+.avatar-container.size-md {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.avatar-container.size-lg {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.avatar-container.role-admin {
+  background-color: #8b5cf6;
+}
+
+.avatar-container.role-user {
+  background-color: #6366f1;
+}
+
+.avatar-container.role-default {
+  background-color: #9ca3af;
+}
+
+.avatar-emoji {
+  line-height: 1;
+  user-select: none;
+}
+
+.avatar-container.size-sm .avatar-emoji {
+  font-size: 1rem;
+}
+
+.avatar-container.size-md .avatar-emoji {
+  font-size: 1.25rem;
+}
+
+.avatar-container.size-lg .avatar-emoji {
+  font-size: 1.75rem;
+}
+
+.avatar-initials {
+  color: #ffffff;
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 1;
+  user-select: none;
+}
+
+.avatar-container.size-sm .avatar-initials {
+  font-size: 0.75rem;
+}
+
+.avatar-container.size-md .avatar-initials {
+  font-size: 0.875rem;
+}
+
+.avatar-container.size-lg .avatar-initials {
+  font-size: 1.125rem;
+}
+
+.display-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #1f2937;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 10rem;
+}
+
+.display-name.size-sm {
+  font-size: 0.75rem;
+}
+
+.display-name.size-md {
+  font-size: 0.875rem;
+}
+
+.display-name.size-lg {
+  font-size: 1rem;
+}

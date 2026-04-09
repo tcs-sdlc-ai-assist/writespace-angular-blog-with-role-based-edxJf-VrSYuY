@@ -1,0 +1,251 @@
+:host {
+  display: block;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.write-blog-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 32px;
+}
+
+.write-blog-card h2 {
+  margin: 0 0 24px 0;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #333333;
+}
+
+.form-group label .required {
+  color: #e74c3c;
+  margin-left: 2px;
+}
+
+.form-group input[type="text"],
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: #1a1a2e;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.form-group input[type="text"]:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: #6c63ff;
+  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.15);
+  background-color: #ffffff;
+}
+
+.form-group input[type="text"].invalid,
+.form-group textarea.invalid,
+.form-group select.invalid {
+  border-color: #e74c3c;
+}
+
+.form-group input[type="text"].invalid:focus,
+.form-group textarea.invalid:focus,
+.form-group select.invalid:focus {
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.15);
+}
+
+.form-group textarea {
+  min-height: 240px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.char-counter {
+  position: absolute;
+  bottom: -20px;
+  right: 4px;
+  font-size: 0.75rem;
+  color: #888888;
+}
+
+.char-counter.limit-near {
+  color: #e67e22;
+}
+
+.char-counter.limit-reached {
+  color: #e74c3c;
+  font-weight: 600;
+}
+
+.error-message {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: #e74c3c;
+  min-height: 1.2em;
+}
+
+.button-row {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #eee;
+}
+
+.btn {
+  padding: 12px 28px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease, transform 0.1s ease;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background-color: #6c63ff;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: #5a52d5;
+}
+
+.btn-primary:disabled {
+  background-color: #b8b5e4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #555555;
+  border: 1px solid #dee2e6;
+}
+
+.btn-secondary:hover {
+  background-color: #f1f1f1;
+}
+
+.btn-draft {
+  background-color: #f0ad4e;
+  color: #ffffff;
+}
+
+.btn-draft:hover {
+  background-color: #ec971f;
+}
+
+.btn-draft:disabled {
+  background-color: #f5d5a0;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.loading-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 0;
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid #dee2e6;
+  border-top-color: #6c63ff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  :host {
+    padding: 16px 12px;
+  }
+
+  .write-blog-card {
+    padding: 20px 16px;
+  }
+
+  .write-blog-card h2 {
+    font-size: 1.4rem;
+  }
+
+  .form-group textarea {
+    min-height: 180px;
+  }
+
+  .button-row {
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .write-blog-card {
+    padding: 16px 12px;
+    border-radius: 8px;
+  }
+
+  .write-blog-card h2 {
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group input[type="text"],
+  .form-group textarea,
+  .form-group select {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+
+  .form-group textarea {
+    min-height: 150px;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}

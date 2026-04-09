@@ -1,0 +1,129 @@
+<div class="user-management">
+  <app-navbar></app-navbar>
+
+  <div class="page-container">
+    <h1 class="page-title">User Management</h1>
+
+    <section class="create-user-section">
+      <h2>Create New User</h2>
+
+      <form [formGroup]="createUserForm" (ngSubmit)="onCreateUser()">
+        <div class="form-group">
+          <label for="displayName">Display Name</label>
+          <input
+            id="displayName"
+            type="text"
+            formControlName="displayName"
+            placeholder="Enter display name"
+          />
+          @if (createUserForm.get('displayName')?.invalid && createUserForm.get('displayName')?.touched) {
+            <div class="validation-error">
+              @if (createUserForm.get('displayName')?.hasError('required')) {
+                <span>Display name is required.</span>
+              }
+              @if (createUserForm.get('displayName')?.hasError('minlength')) {
+                <span>Display name must be at least 2 characters.</span>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            id="username"
+            type="text"
+            formControlName="username"
+            placeholder="Enter username"
+          />
+          @if (createUserForm.get('username')?.invalid && createUserForm.get('username')?.touched) {
+            <div class="validation-error">
+              @if (createUserForm.get('username')?.hasError('required')) {
+                <span>Username is required.</span>
+              }
+              @if (createUserForm.get('username')?.hasError('minlength')) {
+                <span>Username must be at least 3 characters.</span>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            formControlName="password"
+            placeholder="Enter password"
+          />
+          @if (createUserForm.get('password')?.invalid && createUserForm.get('password')?.touched) {
+            <div class="validation-error">
+              @if (createUserForm.get('password')?.hasError('required')) {
+                <span>Password is required.</span>
+              }
+              @if (createUserForm.get('password')?.hasError('minlength')) {
+                <span>Password must be at least 6 characters.</span>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="role">Role</label>
+          <select id="role" formControlName="role">
+            <option value="" disabled>Select a role</option>
+            <option value="admin">Admin</option>
+            <option value="author">Author</option>
+            <option value="reader">Reader</option>
+          </select>
+          @if (createUserForm.get('role')?.invalid && createUserForm.get('role')?.touched) {
+            <div class="validation-error">
+              @if (createUserForm.get('role')?.hasError('required')) {
+                <span>Role is required.</span>
+              }
+            </div>
+          }
+        </div>
+
+        @if (formError) {
+          <div class="form-error">{{ formError }}</div>
+        }
+
+        <button
+          type="submit"
+          class="btn-create"
+          [disabled]="createUserForm.invalid || isSubmitting"
+        >
+          @if (isSubmitting) {
+            <span>Creating...</span>
+          } @else {
+            <span>Create User</span>
+          }
+        </button>
+      </form>
+    </section>
+
+    <section class="user-list-section">
+      <h2>Users</h2>
+
+      @if (isLoading) {
+        <div class="loading">Loading users...</div>
+      }
+
+      @if (!isLoading && users.length === 0) {
+        <div class="empty-state">No users found.</div>
+      }
+
+      @if (!isLoading && users.length > 0) {
+        <div class="user-list">
+          <app-user-row
+            *ngFor="let user of users; trackBy: trackByUserId"
+            [user]="user"
+            [currentUserId]="currentUserId"
+            (delete)="onDeleteUser($event)"
+          ></app-user-row>
+        </div>
+      }
+    </section>
+  </div>
+</div>

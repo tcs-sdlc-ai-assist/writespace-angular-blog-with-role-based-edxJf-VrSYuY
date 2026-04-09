@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+
+<main class="read-blog-container">
+  @if (post) {
+    <article class="post-article">
+      <h1 class="post-title">{{ post.title }}</h1>
+
+      <div class="post-author-section">
+        <app-avatar [name]="post.author"></app-avatar>
+        <div class="author-info">
+          <span class="author-name">{{ post.author }}</span>
+          <span class="post-date">{{ post.date | date: 'longDate' }}</span>
+        </div>
+      </div>
+
+      <div class="post-content" [innerHTML]="post.content"></div>
+
+      @if (isOwner) {
+        <div class="post-actions">
+          <button class="btn-edit" (click)="onEdit()">Edit</button>
+          <button class="btn-delete" (click)="onDelete()">Delete</button>
+        </div>
+      }
+    </article>
+  } @else {
+    <div class="not-found">
+      <p>Post not found</p>
+    </div>
+  }
+</main>

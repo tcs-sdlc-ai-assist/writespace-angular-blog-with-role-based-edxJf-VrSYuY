@@ -1,0 +1,93 @@
+<div class="admin-dashboard">
+  <app-navbar></app-navbar>
+
+  <div class="dashboard-content">
+    <div class="gradient-banner">
+      <h1>Welcome back, Admin</h1>
+      <p>Manage your blog posts, users, and site settings from here.</p>
+    </div>
+
+    <div class="stats-grid">
+      <app-stat-card
+        [title]="'Total Posts'"
+        [value]="totalPosts"
+        [icon]="'article'"
+        [color]="'#4f46e5'"
+      ></app-stat-card>
+      <app-stat-card
+        [title]="'Total Users'"
+        [value]="totalUsers"
+        [icon]="'people'"
+        [color]="'#0891b2'"
+      ></app-stat-card>
+      <app-stat-card
+        [title]="'Comments'"
+        [value]="totalComments"
+        [icon]="'comment'"
+        [color]="'#059669'"
+      ></app-stat-card>
+      <app-stat-card
+        [title]="'Views'"
+        [value]="totalViews"
+        [icon]="'visibility'"
+        [color]="'#d97706'"
+      ></app-stat-card>
+    </div>
+
+    <div class="quick-actions">
+      <h2>Quick Actions</h2>
+      <div class="actions-row">
+        <button class="action-btn primary" (click)="onCreatePost()">
+          <span class="material-icons">add_circle</span>
+          New Post
+        </button>
+        <button class="action-btn secondary" (click)="onManageUsers()">
+          <span class="material-icons">group</span>
+          Manage Users
+        </button>
+        <button class="action-btn secondary" (click)="onViewAnalytics()">
+          <span class="material-icons">bar_chart</span>
+          View Analytics
+        </button>
+        <button class="action-btn secondary" (click)="onSiteSettings()">
+          <span class="material-icons">settings</span>
+          Site Settings
+        </button>
+      </div>
+    </div>
+
+    <div class="recent-posts">
+      <h2>Recent Posts</h2>
+      @if (recentPosts.length === 0) {
+        <p class="no-posts">No posts found.</p>
+      }
+      <div class="posts-list">
+        @for (post of recentPosts; track post.id) {
+          <div class="post-item">
+            <div class="post-info">
+              <h3 class="post-title">{{ post.title }}</h3>
+              <div class="post-meta">
+                <span class="post-author">
+                  <span class="material-icons">person</span>
+                  {{ post.author }}
+                </span>
+                <span class="post-date">
+                  <span class="material-icons">calendar_today</span>
+                  {{ post.date | date: 'mediumDate' }}
+                </span>
+              </div>
+            </div>
+            <div class="post-actions">
+              <button class="icon-btn edit" (click)="onEditPost(post.id)" title="Edit post">
+                <span class="material-icons">edit</span>
+              </button>
+              <button class="icon-btn delete" (click)="onDeletePost(post.id)" title="Delete post">
+                <span class="material-icons">delete</span>
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

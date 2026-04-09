@@ -1,0 +1,29 @@
+<article class="blog-card" [ngClass]="'accent-' + (index % 4)">
+  <div class="blog-card__header">
+    <h2 class="blog-card__title">{{ post.title }}</h2>
+  </div>
+  <div class="blog-card__body">
+    <p class="blog-card__excerpt">{{ post.content | slice:0:150 }}{{ post.content.length > 150 ? '...' : '' }}</p>
+  </div>
+  <div class="blog-card__footer">
+    <div class="blog-card__author">
+      <app-avatar [name]="post.author.name" [imageUrl]="post.author.avatarUrl"></app-avatar>
+      <div class="blog-card__author-info">
+        <span class="blog-card__author-name">{{ post.author.name }}</span>
+        <span class="blog-card__date">{{ post.createdAt | date:'mediumDate' }}</span>
+      </div>
+    </div>
+    @if (isOwner) {
+      <div class="blog-card__actions">
+        <button class="blog-card__action blog-card__action--edit" (click)="edit.emit(post)" aria-label="Edit post">
+          <span class="blog-card__action-icon">✏️</span>
+          Edit
+        </button>
+        <button class="blog-card__action blog-card__action--delete" (click)="delete.emit(post)" aria-label="Delete post">
+          <span class="blog-card__action-icon">🗑️</span>
+          Delete
+        </button>
+      </div>
+    }
+  </div>
+</article>

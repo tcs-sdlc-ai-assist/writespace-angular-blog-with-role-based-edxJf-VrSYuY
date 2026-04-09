@@ -1,0 +1,108 @@
+<div class="register-page">
+  <app-public-navbar></app-public-navbar>
+
+  <div class="register-container">
+    <div class="register-card">
+      <div class="card-accent"></div>
+      <div class="card-content">
+        <h1 class="card-title">Create Account</h1>
+        <p class="card-subtitle">Join WriteSpace and start sharing your stories</p>
+
+        @if (errorMessage) {
+          <div class="error-banner">
+            <span class="error-icon">⚠</span>
+            <span>{{ errorMessage }}</span>
+          </div>
+        }
+
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="displayName" class="form-label">Display Name</label>
+            <input
+              id="displayName"
+              type="text"
+              class="form-input"
+              formControlName="displayName"
+              placeholder="Enter your display name"
+              [class.input-error]="registerForm.get('displayName')?.invalid && registerForm.get('displayName')?.touched"
+            />
+            @if (registerForm.get('displayName')?.invalid && registerForm.get('displayName')?.touched) {
+              <div class="field-error">
+                @if (registerForm.get('displayName')?.hasError('required')) {
+                  <span>Display name is required.</span>
+                }
+                @if (registerForm.get('displayName')?.hasError('minlength')) {
+                  <span>Display name must be at least 2 characters.</span>
+                }
+              </div>
+            }
+          </div>
+
+          <div class="form-group">
+            <label for="username" class="form-label">Username</label>
+            <input
+              id="username"
+              type="text"
+              class="form-input"
+              formControlName="username"
+              placeholder="Choose a username"
+              [class.input-error]="registerForm.get('username')?.invalid && registerForm.get('username')?.touched"
+            />
+            @if (registerForm.get('username')?.invalid && registerForm.get('username')?.touched) {
+              <div class="field-error">
+                @if (registerForm.get('username')?.hasError('required')) {
+                  <span>Username is required.</span>
+                }
+                @if (registerForm.get('username')?.hasError('minlength')) {
+                  <span>Username must be at least 3 characters.</span>
+                }
+                @if (registerForm.get('username')?.hasError('pattern')) {
+                  <span>Username can only contain letters, numbers, and underscores.</span>
+                }
+              </div>
+            }
+          </div>
+
+          <div class="form-group">
+            <label for="password" class="form-label">Password</label>
+            <input
+              id="password"
+              type="password"
+              class="form-input"
+              formControlName="password"
+              placeholder="Create a password"
+              [class.input-error]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+            />
+            @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
+              <div class="field-error">
+                @if (registerForm.get('password')?.hasError('required')) {
+                  <span>Password is required.</span>
+                }
+                @if (registerForm.get('password')?.hasError('minlength')) {
+                  <span>Password must be at least 8 characters.</span>
+                }
+              </div>
+            }
+          </div>
+
+          <button
+            type="submit"
+            class="submit-button"
+            [disabled]="registerForm.invalid || isLoading"
+          >
+            @if (isLoading) {
+              <span class="spinner"></span>
+              <span>Creating Account...</span>
+            } @else {
+              <span>Create Account</span>
+            }
+          </button>
+        </form>
+
+        <p class="login-link">
+          Already have an account? <a routerLink="/login">Sign in</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
